@@ -1,6 +1,6 @@
 <h1>Mullet</h1>
 <% if user_signed_in? %>
-	<img src="<%= Twitter.user.profile_image %>" alt="<%= current_user.username %>" />
+	<img src="<%= Twitter.user.default_profile_image %>" alt="<%= current_user.username %>" />
 	<% Twitter.user_timeline(current_user.username, :count => 20).each do |t| %>
 		<div class="tweet" data-tweet-id="<%= t.id %>"><%= t.text %><br /></div>
 	<% end %>
