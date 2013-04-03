@@ -1,1 +1,8 @@
 <h1>Mullet</h1>
+<% if user_signed_in? %>
+	<% Twitter.user_timeline(current_user.username, :count => 20).each do |t| %>
+		<div class="tweet" data-tweet-id="<%= t.id %>"><%= t.text %><br /></div>
+	<% end %>
+<% else %>
+	<p>Sign in to access your tweets and start making boxes!</p>
+<% end %>
