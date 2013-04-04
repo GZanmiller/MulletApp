@@ -1,9 +1,10 @@
 <h1>Mullet</h1>
 <% if user_signed_in? %>
-	<img src="<%= Twitter.user.profile_image_url.gsub(/_normal/, '_normal' => '') %>" alt="<%= current_user.username %>" />
+	<img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= current_user.username %>&size=original" />
 	<% Twitter.user_timeline(current_user.username, :count => 20).each do |t| %>
 		<div class="tweet" data-tweet-id="<%= t.id %>"><%= t.text %><br /></div>
 	<% end %>
 <% else %>
+
 	<p>Sign in to access your tweets and start making boxes!</p>
 <% end %>
