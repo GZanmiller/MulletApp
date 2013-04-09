@@ -1,4 +1,7 @@
 MulletApp::Application.routes.draw do
+  resources :tweets
+
+
   resources :boxes
 
 
