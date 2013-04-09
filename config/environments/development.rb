@@ -37,4 +37,9 @@ MulletApp::Application.configure do
 
   # Devise Support
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  ENV["TWITTER_CONSUMER_KEY"] = 'skPAQVbWZgedoapV2VkzWw'
+  ENV["TWITTER_CONSUMER_SECRET"] = 'AhROoFujHlIKNQAG3tRyc2HdtKBvM9QxvC3sBZeN6N0'
+  ENV["TWITTER_OAUTH_TOKEN"] = '141842793-dFNwDgdS5PdWC5QiHJryvrCucv99lE7kUToFkEQh'
+  ENV["TWITTER_OAUTH_TOKEN_SECRET"] = 'wvIeyWem52TCMhkTTUjVKVls8hKGcw4lLoujeSJkE'
 end
