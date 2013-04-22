@@ -51,7 +51,7 @@
 		</div>
 
 		<div id="saved_tweets">
-			<% @allTweets = Tweet.all().each do |t| %>
+			<% Tweet.all().each do |t| %>
 					<div class="tweet" data-tweet-id="<%= t.id %>">
 						<%= t.tweet_text %>
 						<br />
