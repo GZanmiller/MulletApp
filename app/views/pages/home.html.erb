@@ -19,9 +19,9 @@
 			<% Twitter.user_timeline(current_user.username, :count => 20).each do |t| %>
 				<div class="tweet" data-tweet-id="<%= t.id %>">
 					<%= t.text %>
-					<%= form_for :tweet do |f| %>
-						<%= hidden_field :user_id, current_user.id %>
-						<%= hidden_field :tweet_text, t.text %>
+					<%= form_for @user_tweets do |f| %>
+						<%= f.hidden_field :user_id, :value => current_user.id %>
+						<%= f.hidden_field :tweet_text, :value => t.text %>
 						<%= f.submit "Save Tweet" %>
 					<% end %>
 					<br />
@@ -47,6 +47,15 @@
 						<br />
 					</div>
 				<% end %>
+			<% end %>
+		</div>
+
+		<div id="saved_tweets">
+			<% @allTweets = Tweet.all().each do |t| %>
+					<div class="tweet" data-tweet-id="<%= t.id %>">
+						<%= t.tweet_text %>
+						<br />
+					</div>
 			<% end %>
 		</div>
 	<% else %>
