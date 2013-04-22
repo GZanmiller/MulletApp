@@ -7,6 +7,9 @@ class PagesController < ApplicationController
 		  config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
 		  config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
 		  config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
-		end
+	end
+
+	@user_tweets = Tweet.new(params[:tweet])
+	@other_users_tweets = Otu.new(params[:othertwitteruser])
   end
 end

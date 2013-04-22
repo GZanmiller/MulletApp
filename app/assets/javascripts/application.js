@@ -16,3 +16,14 @@
 //= require_tree .
 //
 // Loads all Bootstrap javascripts
+
+
+function view_others_tweets() {
+	document.getElementById("users_tweets").style.visibility = 'hidden';
+	document.getElementById("other_users_tweets").style.visibility = 'visible';
+}
+
+function view_your_tweets() {
+	document.getElementById("users_tweets").style.visibility = 'visible';
+	document.getElementById("other_users_tweets").style.visibility = 'hidden';
+}

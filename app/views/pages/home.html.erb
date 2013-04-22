@@ -7,11 +7,48 @@
 <div class="container">
 	<% if user_signed_in? %>
 		<!-- <img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= current_user.username %>&size=original" /> -->
-		<% Twitter.user_timeline(current_user.username, :count => 20).each do |t| %>
-			<div class="tweet" data-tweet-id="<%= t.id %>">
-				<%= t.text %><br />
+		<div class="row">
+			<div class="span1"></div>
+			<p><a href="#" class="btn btn-primary btn-large span3" onclick="view_your_tweets()">View Your Tweets</a></p>
+			<p><a href="#" class="btn btn-primary btn-large span3" onclick="view_others_tweets()">View Tweets From Others</a></p>
+			<p><a href="#" class="btn btn-primary btn-large span3" onclick="view_saved_tweets()">View Your Saved Tweets</a></p>
+			<div class="span1"></div>
+		</div>
+		
+		<div id="users_tweets">
+			<% Twitter.user_timeline(current_user.username, :count => 20).each do |t| %>
+				<div class="tweet" data-tweet-id="<%= t.id %>">
+					<%= t.text %>
+					<%= form_for :tweet do |f| %>
+						<%= hidden_field :user_id, current_user.id %>
+						<%= hidden_field :tweet_text, t.text %>
+						<%= f.submit "Save Tweet" %>
+					<% end %>
+					<br />
+				</div>
+			<% end %>
+		</div>
+
+		<div id="other_users_tweets">
+			<div class = "row">
+				<div class = "span4"></div>
+					<%= form_for :othertwitteruser, :url => root_path, :class => 'span4' do |f| %>
+						<%= f.label 'Enter the twitter username of the person you would like to view:' %>
+						<%= f.text_field :name %>
+						<%= f.submit "Submit" %>
+					<% end %>
+				<div class = "span4"></div>
+				<% @selected_button = 'other_user' %>
 			</div>
-		<% end %>
+			<% if @other_users_tweets.name != nil %>
+				<% Twitter.user_timeline(@other_users_tweets.name, :count => 20).each do |t| %>
+					<div class="tweet" data-tweet-id="<%= t.id %>">
+						<%= t.text %>
+						<br />
+					</div>
+				<% end %>
+			<% end %>
+		</div>
 	<% else %>
 </div>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409173439) do
+ActiveRecord::Schema.define(:version => 20130422133402) do
 
   create_table "boxes", :force => true do |t|
     t.string   "title"
@@ -24,10 +24,30 @@ ActiveRecord::Schema.define(:version => 20130409173439) do
 
   add_index "boxes", ["user_id"], :name => "index_boxes_on_user_id"
 
+  create_table "other_twitter_users", :force => true do |t|
+    t.string   "username"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "othertwitterusers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "otus", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "tweets", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "box_id"
+    t.string   "user_id"
+    t.string   "tweet_text"
   end
 
   add_index "tweets", ["box_id"], :name => "index_tweets_on_box_id"
